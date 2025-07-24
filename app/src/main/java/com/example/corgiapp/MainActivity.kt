@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,9 +31,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -107,7 +111,9 @@ class MainActivity : ComponentActivity() {
                             no = 1,
                             title = "First day",
                             body = "Body",
-                            modifier = Modifier.padding(innerPadding)
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .padding(innerPadding)
                         )
                     }
                 }
@@ -134,7 +140,7 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
     ) {
 
         Column(
-            modifier = Modifier.padding(8.dp),
+            modifier = Modifier.padding(vertical = 28.dp),
             verticalArrangement = Arrangement.spacedBy(18.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
 
@@ -172,6 +178,25 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
                 color = Color(0xFFFA5000),
                 textAlign = TextAlign.Center
             )
+
+            Button(
+                shape = RectangleShape,
+                modifier = Modifier
+                    .fillMaxWidth(0.5f),
+                onClick = {},
+                colors = ButtonColors(
+                    containerColor = Color(0xFFFFA726),
+                    contentColor = Color.White,
+                    disabledContainerColor = Color(0xFFFFA726),
+                    disabledContentColor = Color.White
+                )
+            ) {
+                Text(
+                   text =  "Boop",
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp
+                )
+            }
         }
 
     }
