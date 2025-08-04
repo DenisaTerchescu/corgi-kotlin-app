@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.corgiapp.composables.CorgiDayCarousel
 import com.example.corgiapp.composables.CorgiTile
 import com.example.corgiapp.ui.theme.CorgiAppTheme
 import java.time.LocalDate
@@ -90,7 +91,8 @@ class MainActivity : ComponentActivity() {
                             )
                     }) { innerPadding ->
                     Box(
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier
+                            .fillMaxSize()
                     ) {
                         // the app wallpaper
                         Image(
@@ -100,15 +102,9 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize()
                         )
 
-                        // the daily tile/card
-                        CorgiTile(
-                            corgiPicId = R.drawable.corgi_1,
-                            dayNo = 1,
-                            description = "Don't forget to have an absolutely corgi-tastic day!!",
-                            modifier = Modifier
+                        CorgiDayCarousel( modifier = Modifier
                                 .align(Alignment.Center)
-                                .padding(innerPadding)
-                        )
+                                .padding(innerPadding))
                     }
                 }
 
