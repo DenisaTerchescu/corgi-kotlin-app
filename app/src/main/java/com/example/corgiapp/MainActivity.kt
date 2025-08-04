@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -117,9 +118,9 @@ class MainActivity : ComponentActivity() {
 
                         // the day tile/card
                         CorgiTile(
-                            no = 1,
-                            title = "First day",
-                            body = "Body",
+                            corgiPicId = R.drawable.corgi_1,
+                            dayNo = 1,
+                            description = "Don't forget to have an absolutely corgi-tastic day!!",
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .padding(innerPadding)
@@ -134,7 +135,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifier) {
+fun CorgiTile(@DrawableRes corgiPicId: Int, dayNo: Int, description: String, modifier: Modifier = Modifier) {
     ElevatedCard(
         modifier = modifier
             .padding(horizontal = 24.dp)
@@ -155,7 +156,7 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
 
             ) {
             Text(
-                text = "Day $no",
+                text = "Day $dayNo",
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp
@@ -166,7 +167,7 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
                     .background(Color(0xFFFFA726))
             ) {
                 Image(
-                    painter = painterResource(R.drawable.corgi_1),
+                    painter = painterResource(corgiPicId),
                     contentDescription = "Corgi day %no",
                     modifier = Modifier
                         .padding(8.dp)
@@ -178,7 +179,7 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
 
 
             Text(
-                text = "Don't forget to have an absolutely corgi-tastic day!!",
+                text = description,
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .fillMaxWidth(),
@@ -218,9 +219,9 @@ fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifie
 fun GreetingPreview() {
     CorgiAppTheme {
         CorgiTile(
-            no = 1,
-            title = "First day",
-            body = "Lorem ipsum",
+            dayNo = 1,
+            description = "Lorem ipsum",
+            corgiPicId = R.drawable.corgi_1
         )
     }
 }
