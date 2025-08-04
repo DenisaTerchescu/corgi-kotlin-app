@@ -14,9 +14,9 @@ import com.example.corgiapp.R
 fun CorgiDayCarousel(modifier: Modifier = Modifier) {
     val days = listOf(
         R.drawable.corgi_1 to "Boop the snoot!",
-        R.drawable.corgi_1 to "Boop the snoot!",
-        R.drawable.corgi_1 to "Boop the snoot!",
-        R.drawable.corgi_1 to "Boop the snoot!",
+        R.drawable.corgi_2 to "Boop the snoot!",
+        R.drawable.corgi_3 to "Boop the snoot!",
+        R.drawable.corgi_4 to "Boop the snoot!",
         R.drawable.corgi_1 to "Boop the snoot!",
     )
 
