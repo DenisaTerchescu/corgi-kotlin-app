@@ -106,6 +106,7 @@ class MainActivity : ComponentActivity() {
                     Box(
                         modifier = Modifier.fillMaxSize()
                     ) {
+                        // the app wallpaper
                         Image(
                             painter = painterResource(R.drawable.wallpaper),
                             contentDescription = null,
@@ -113,6 +114,8 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize()
                         )
 
+
+                        // the day tile/card
                         CorgiTile(
                             no = 1,
                             title = "First day",
