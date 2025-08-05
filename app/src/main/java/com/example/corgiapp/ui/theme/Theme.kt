@@ -40,15 +40,21 @@ fun CorgiAppTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val CorgiColorScheme = lightColorScheme(
+        primary = CorgiOrange,
+        onPrimary = CorgiText,
+        background = CorgiPeach,
+        surface = CorgiPeach,
+        onSurface = CorgiText
+    )
+    val colorScheme = if (darkTheme) {
+        DarkColorScheme
+    } else {
+        CorgiColorScheme
     }
+
+
 
     MaterialTheme(
         colorScheme = colorScheme,

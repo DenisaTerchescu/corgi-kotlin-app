@@ -7,43 +7,29 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.CardColors
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.corgiapp.composables.CorgiDayCarousel
 import com.example.corgiapp.ui.theme.CorgiAppTheme
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -52,14 +38,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val currentDay = LocalDate.now().dayOfMonth
+        LocalDate.now().dayOfMonth
 
         setContent {
             CorgiAppTheme {
 
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
+                    modifier = Modifier.fillMaxSize(), topBar = {
                         TopAppBar(
                             title = {
                                 Row(
@@ -93,16 +78,15 @@ class MainActivity : ComponentActivity() {
                                 }
                             },
                             colors = TopAppBarColors(
-                                containerColor = Color(0xFFFFA726),
-                                scrolledContainerColor = Color(0xFFFFA726),
-                                navigationIconContentColor = Color(0xFFFFA726),
-                                titleContentColor = Color.Black,
-                                actionIconContentColor = Color(0xFFFFA726),
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                scrolledContainerColor = MaterialTheme.colorScheme.primary,
+                                navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
+                                titleContentColor = MaterialTheme.colorScheme.onPrimary,
+                                actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
                             ),
 
                             )
-                    }
-                ) { innerPadding ->
+                    }) { innerPadding ->
                     Box(
                         modifier = Modifier.fillMaxSize()
                     ) {
@@ -114,12 +98,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize()
                         )
 
-
-                        // the day tile/card
-                        CorgiTile(
-                            no = 1,
-                            title = "First day",
-                            body = "Body",
+                        CorgiDayCarousel(
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .padding(innerPadding)
@@ -133,94 +112,4 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun CorgiTile(no: Int, title: String, body: String, modifier: Modifier = Modifier) {
-    ElevatedCard(
-        modifier = modifier
-            .padding(horizontal = 24.dp)
-            .padding(vertical = 24.dp)
-            .fillMaxWidth(),
-        colors = CardColors(
-            containerColor = Color.White,
-            contentColor = Color.Black,
-            disabledContainerColor = Color.White,
-            disabledContentColor = Color.Black
-        )
-    ) {
 
-        Column(
-            modifier = Modifier.padding(vertical = 28.dp),
-            verticalArrangement = Arrangement.spacedBy(18.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-
-            ) {
-            Text(
-                text = "Day $no",
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                fontWeight = FontWeight.Bold,
-                fontSize = 24.sp
-            )
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Color(0xFFFFA726))
-            ) {
-                Image(
-                    painter = painterResource(R.drawable.corgi_1),
-                    contentDescription = "Corgi day %no",
-                    modifier = Modifier
-                        .padding(8.dp)
-//                        .fillMaxWidth()
-
-                        .size(200.dp)
-                )
-            }
-
-
-            Text(
-                text = "Don't forget to have an absolutely corgi-tastic day!!",
-                modifier = Modifier
-                    .padding(horizontal = 8.dp)
-                    .fillMaxWidth(),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-                color = Color(0xFFFA5000),
-                textAlign = TextAlign.Center
-            )
-
-            Button(
-                shape = RectangleShape,
-                modifier = Modifier
-                    .fillMaxWidth(0.5f),
-                onClick = {},
-                colors = ButtonColors(
-                    containerColor = Color(0xFFFFA726),
-                    contentColor = Color.White,
-                    disabledContainerColor = Color(0xFFFFA726),
-                    disabledContentColor = Color.White
-                )
-            ) {
-                Text(
-                    text = "Boop",
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 20.sp
-                )
-            }
-        }
-
-    }
-
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CorgiAppTheme {
-        CorgiTile(
-            no = 1,
-            title = "First day",
-            body = "Lorem ipsum",
-        )
-    }
-}
