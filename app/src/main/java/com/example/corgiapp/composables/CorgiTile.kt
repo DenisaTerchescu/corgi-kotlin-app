@@ -30,8 +30,11 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.corgiapp.R
+import com.example.corgiapp.ui.theme.CorgiAppTheme
 
 @Composable
 fun CorgiTile(@DrawableRes corgiPicId: Int, dayNo: Int, description: String, modifier: Modifier = Modifier) {
@@ -124,5 +127,16 @@ fun CorgiTile(@DrawableRes corgiPicId: Int, dayNo: Int, description: String, mod
 
     }
 
+}
 
+@Preview(showBackground = true)
+@Composable
+fun CorgiTilePreview() {
+    CorgiAppTheme {
+        CorgiTile(
+            corgiPicId = R.drawable.corgi_1,
+            dayNo = 1,
+            description = "Let's pawse for a moment!",
+        )
+    }
 }
