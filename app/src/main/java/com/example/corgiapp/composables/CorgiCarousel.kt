@@ -30,7 +30,7 @@ fun CorgiDayCarousel(modifier: Modifier = Modifier) {
         R.drawable.corgi_15 to "Corgi-ously fluffy and paws-itively lovable!",
     )
 
-    val pagerState = rememberPagerState(pageCount = { days.size })
+    val pagerState = rememberPagerState(pageCount = { 2* days.size })
 
     HorizontalPager(
         state = pagerState,
@@ -40,7 +40,7 @@ fun CorgiDayCarousel(modifier: Modifier = Modifier) {
             .fillMaxSize()
             .padding(top = 24.dp)
     ) { page ->
-        val (imageId, body) = days[page]
+        val (imageId, body) = days[page%15]
 
         CorgiTile(
             corgiPicId = imageId,
